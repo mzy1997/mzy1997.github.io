@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Pytest常用命令 | 仙女17</title><meta name="author" content="mzy"><meta name="copyright" content="mzy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.  运行单个用例1pytest -v test_day01.py::test_simple_case1     运行效果： 1234567891011Administrator@PC-202102061358 MINGW64 &#x2F;d&#x2F;python_demo&#x2F;pytest$ pytest -v test_day01.py::test_simple_case1&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytest常用命令">
+<meta property="og:url" content="http://example.com/2026/03/14/Pytest%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="仙女17">
+<meta property="og:description" content="1.  运行单个用例1pytest -v test_day01.py::test_simple_case1     运行效果： 1234567891011Administrator@PC-202102061358 MINGW64 &#x2F;d&#x2F;python_demo&#x2F;pytest$ pytest -v test_day01.py::test_simple_case1&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-03-14T11:22:44.000Z">
+<meta property="article:modified_time" content="2026-03-14T11:23:08.424Z">
+<meta property="article:author" content="mzy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Pytest常用命令",
+  "url": "http://example.com/2026/03/14/Pytest%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2026-03-14T11:22:44.000Z",
+  "dateModified": "2026-03-14T11:23:08.424Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "mzy",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/03/14/Pytest%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Pytest常用命令',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">仙女17</span></a><a class="nav-page-title" href="/"><span class="site-name">Pytest常用命令</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Pytest常用命令</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-14T11:22:44.000Z" title="发表于 2026-03-14 19:22:44">2026-03-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-14T11:23:08.424Z" title="更新于 2026-03-14 19:23:08">2026-03-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="1-运行单个用例"><a href="#1-运行单个用例" class="headerlink" title="1.  运行单个用例"></a>1.  运行单个用例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pytest -v test_day01.py::test_simple_case1</span><br></pre></td></tr></table></figure>
+
+<p>   运行效果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Administrator@PC-202102061358 MINGW64 /d/python_demo/pytest</span><br><span class="line">$ pytest -v test_day01.py::test_simple_case1</span><br><span class="line">=========================================================================================== <span class="built_in">test</span> session starts ============================================================================================</span><br><span class="line">platform win32 -- Python 3.8.10, pytest-6.2.5, py-1.10.0, pluggy-1.0.0 -- d:\python_demo\pytest\venv\scripts\python.exe</span><br><span class="line">cachedir: .pytest_cache</span><br><span class="line">rootdir: D:\python_demo\pytest</span><br><span class="line">collected 1 item                                                                                                                                                                                            </span><br><span class="line"></span><br><span class="line">test_day01.py::test_simple_case1 PASSED                                                                                                                                                               [100%]</span><br><span class="line"></span><br><span class="line">============================================================================================ 1 passed <span class="keyword">in</span> 0.03s =============================================================================================</span><br></pre></td></tr></table></figure>
+
+<p> 只运行了test_day01.py下的test_simple_case1这个用例</p>
+<p> &#x3D;&#x3D;”::”前后不能包含空格，否则无法运行&#x3D;&#x3D;<br> <br></p>
+<h2 id="2-help选项"><a href="#2-help选项" class="headerlink" title="2. help选项"></a>2. help选项</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pytest --<span class="built_in">help</span> || pytest -h</span><br></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">$ pytest --<span class="built_in">help</span></span><br><span class="line">usage: pytest [options] [file_or_dir] [file_or_dir] [...]</span><br><span class="line"></span><br><span class="line">positional arguments:</span><br><span class="line">  file_or_dir</span><br><span class="line"></span><br><span class="line">general:</span><br><span class="line">  -k EXPRESSION         only run tests <span class="built_in">which</span> match the given substring expression. An expression is a python evaluatable expression <span class="built_in">where</span> all names are substring-matched against <span class="built_in">test</span> names and their parent</span><br><span class="line"></span><br><span class="line">                        classes. Example: -k <span class="string">&#x27;test_method or test_other&#x27;</span> matches all <span class="built_in">test</span> <span class="built_in">functions</span> and classes whose name contains <span class="string">&#x27;test_method&#x27;</span> or <span class="string">&#x27;test_other&#x27;</span>, <span class="keyword">while</span> -k <span class="string">&#x27;not test_method&#x27;</span> matches those</span><br><span class="line">                        that don<span class="string">&#x27;t contain &#x27;</span>test_method<span class="string">&#x27; in their names. -k &#x27;</span>not test_method and not test_other<span class="string">&#x27; will eliminate the matches. Additionally keywords are matched to classes and functions</span></span><br><span class="line"><span class="string">                        containing extra names in their &#x27;</span>extra_keyword_matches<span class="string">&#x27; set, as well as functions which have names assigned directly to them. The matching is case-insensitive.</span></span><br><span class="line"><span class="string">  -m MARKEXPR           only run tests matching given mark expression.</span></span><br><span class="line"><span class="string">                        For example: -m &#x27;</span>mark1 and not mark2<span class="string">&#x27;.</span></span><br><span class="line"><span class="string">  --markers             show markers (builtin, plugin and per-project ones).</span></span><br><span class="line"><span class="string">  -x, --exitfirst       exit instantly on first error or failed test.</span></span><br><span class="line"><span class="string">  --fixtures, --funcargs</span></span><br><span class="line"><span class="string">                        show available fixtures, sorted by plugin appearance (fixtures with leading &#x27;</span>_<span class="string">&#x27; are only shown with &#x27;</span>-v<span class="string">&#x27;)</span></span><br><span class="line"><span class="string">  --fixtures-per-test   show fixtures per test</span></span><br><span class="line"><span class="string">  --pdb                 start the interactive Python debugger on errors or KeyboardInterrupt.</span></span><br><span class="line"><span class="string">  --pdbcls=modulename:classname</span></span><br><span class="line"><span class="string">                        start a custom interactive Python debugger on errors. For example: --pdbcls=IPython.terminal.debugger:TerminalPdb</span></span><br><span class="line"><span class="string">  --trace               Immediately break when running each test.</span></span><br><span class="line"><span class="string">  --capture=method      per-test capturing method: one of fd|sys|no|tee-sys.</span></span><br><span class="line"><span class="string">  -s                    shortcut for --capture=no.</span></span><br><span class="line"><span class="string">  --runxfail            report the results of xfail tests as if they were not marked</span></span><br><span class="line"><span class="string">  --lf, --last-failed   rerun only the tests that failed at the last run (or all if none failed)</span></span><br><span class="line"><span class="string">  --ff, --failed-first  run all tests, but run the last failures first.</span></span><br><span class="line"><span class="string">                        This may re-order tests and thus lead to repeated fixture setup/teardown.</span></span><br><span class="line"><span class="string">  --nf, --new-first     run tests from new files first, then the rest of the tests sorted by file mtime</span></span><br><span class="line"><span class="string">  --cache-show=[CACHESHOW]</span></span><br><span class="line"><span class="string">                        show cache contents, don&#x27;</span>t perform collection or tests. Optional argument: glob (default: <span class="string">&#x27;*&#x27;</span>).</span><br><span class="line">  --cache-clear         remove all cache contents at start of <span class="built_in">test</span> run.</span><br><span class="line">  --lfnf=&#123;all,none&#125;, --last-failed-no-failures=&#123;all,none&#125;</span><br><span class="line">                        <span class="built_in">which</span> tests to run with no previously (known) failures.</span><br><span class="line">  --sw, --stepwise      <span class="built_in">exit</span> on <span class="built_in">test</span> failure and <span class="built_in">continue</span> from last failing <span class="built_in">test</span> next <span class="keyword">time</span></span><br><span class="line">  --sw-skip, --stepwise-skip</span><br><span class="line">                        ignore the first failing <span class="built_in">test</span> but stop on the next failing <span class="built_in">test</span></span><br><span class="line">	</span><br><span class="line">	...ellipsis more <span class="built_in">command</span> lines ...</span><br></pre></td></tr></table></figure>
+
+<p>  general中包含了大部分常用的命令，除此之外的更多命令可参考这篇文章：</p>
+<p><a target="_blank" rel="noopener" href="https://testerhome.com/topics/25461">pytest 132 个命令行参数用法 · TesterHome</a><br><br></p>
+<h2 id="3-k-参数"><a href="#3-k-参数" class="headerlink" title="3. -k 参数"></a>3. -k 参数</h2><p>   -k 参数让测试人员可以使用表达式来筛选想要运行的测试用例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 运行名称中包含 case1 或 case2 的用例</span></span><br><span class="line">pytest -k <span class="string">&quot;case1 or case2&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行名称中同时包含 test 和 login 的用例</span></span><br><span class="line">pytest -k <span class="string">&quot;test and login&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#运行名称中不包含 logout 的用例</span></span><br><span class="line">pytest -k <span class="string">&quot;not logout&quot;</span></span><br></pre></td></tr></table></figure>
+   <br>
+   
+<h2 id="4-m-参数"><a href="#4-m-参数" class="headerlink" title="4. -m 参数"></a>4. -m 参数</h2><p>-m 参数可以运行被标记的一个或多个用例</p>
+<p>  如：为test_upload()、test_detail()加上@pytest.mark.setup_cases装饰器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line">...</span><br><span class="line"><span class="meta">@pytest.mark.setup_cases</span></span><br><span class="line">test_upload():</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.setup_cases</span></span><br><span class="line">test_detail()</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>  运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pytest -m <span class="string">&quot;setup_cases&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>  输入该命令将会执行以上两个cases。当然，-m参数也可以指定多个标记名称，这些标记的名称可通过 “and” 、 “or” 、“not” 进行筛选，方法与-k参数相同。<br><br></p>
+<h2 id="5-x-参数"><a href="#5-x-参数" class="headerlink" title="5.  -x 参数"></a>5.  -x 参数</h2><p>   -x 参数又称为 “exitfirst”，pytest理论上会执行所有搜索到的用例，当一个用例失败后，会将该用例测试结果记录并继续执行。但是，有的时候我们想让pytest一遇到错误就停止，这时候就可以使用 “exitfirst” 了。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pytest -x</span><br></pre></td></tr></table></figure>
+
+<p>  遭遇失败后，命令行中会显示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span><br></pre></td></tr></table></figure>
+<br>
+
+
+<h2 id="6-maxfail-num-参数"><a href="#6-maxfail-num-参数" class="headerlink" title="6. -maxfail&#x3D;num 参数"></a>6. -maxfail&#x3D;num 参数</h2><p>   -x 参数一遇到错误就停止。而-maxfail参数则可以指定失败的次数上限。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pytest -maxfail=5</span><br></pre></td></tr></table></figure>
+
+<p> &#x3D;&#x3D;”&#x3D;”前后不能包含空格，否则无法运行&#x3D;&#x3D;<br><br></p>
+<h2 id="7-s-—capture-no"><a href="#7-s-—capture-no" class="headerlink" title="7. -s || —capture&#x3D;no"></a>7. -s || —capture&#x3D;no</h2><p>   -s 或 —capture&#x3D;no 都关闭了输出捕获，我们调试时的print并不会显示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pytest -s</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">pytest --capture=no</span><br></pre></td></tr></table></figure>
+<br>
+
+<h2 id="8-—lf-—last-failed-与-—ff-—failed-first"><a href="#8-—lf-—last-failed-与-—ff-—failed-first" class="headerlink" title="8. —lf(—last-failed) 与 —ff(—failed-first)"></a>8. —lf(—last-failed) 与 —ff(—failed-first)</h2><p>   当跑完一轮测试后，我们可以用—lf 重新运行上次失败的用例集。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># firstly run the test suite</span></span><br><span class="line">pytest</span><br><span class="line"></span><br><span class="line"><span class="comment"># then use --lf run the failed cases</span></span><br><span class="line">pytest --lf</span><br></pre></td></tr></table></figure>
+
+<p>   而—ff 与 -lf 不同的地方在于，-lf 只运行上次失败的用例；—ff 会首先运行失败的用例，再执行余下成功的用例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># firstly run the test suite</span></span><br><span class="line">pytest</span><br><span class="line"></span><br><span class="line"><span class="comment"># use --ff run the failed ones first, and then the succecss ones</span></span><br><span class="line">pytest --ff</span><br></pre></td></tr></table></figure>
+
+<p>   —lf 与 —ff 运行结果对比：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># --lf</span></span><br><span class="line">collected 3 items / 2 deselected / 1 selected                                                                                                                                                               </span><br><span class="line">run-last-failure: rerun previous 1 failure</span><br><span class="line"></span><br><span class="line">test_day01.py F</span><br><span class="line"></span><br><span class="line"><span class="comment"># ====================================================</span></span><br><span class="line"><span class="comment"># --ff</span></span><br><span class="line">collected 3 items                                                                                                                                                                                           </span><br><span class="line">run-last-failure: rerun previous 1 failure first</span><br><span class="line"></span><br><span class="line">test_day01.py F..</span><br></pre></td></tr></table></figure>
+<br>
+
+<h2 id="9-v-—verbose-参数"><a href="#9-v-—verbose-参数" class="headerlink" title="9. -v || —verbose 参数"></a>9. -v || —verbose 参数</h2><p>   -v&#x2F;—verbose 可以更详细的显示运行结果。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment"># diffrent content with -v</span></span><br><span class="line">test_day01.py::test_simple_case PASSED                                                                                                                                                                [ 33%]</span><br><span class="line">test_day01.py::test_simple_case1 FAILED                                                                                                                                                               [ 66%]</span><br><span class="line">test_day01.py::test_print_sys PASSED                                                                                                                                                                  [100%]</span><br></pre></td></tr></table></figure>
+<br>
+
+<h2 id="10-q-—quiet-参数"><a href="#10-q-—quiet-参数" class="headerlink" title="10. -q || —quiet 参数"></a>10. -q || —quiet 参数</h2><p>   与 -v 相反，-q 会简化输出信息。<br>   <br></p>
+<h2 id="11-l-—showlocals"><a href="#11-l-—showlocals" class="headerlink" title="11. -l || —showlocals"></a>11. -l || —showlocals</h2><p>   -l 参数会输出失败用例中局部变量的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">================================================================================================= FAILURES =================================================================================================</span><br><span class="line">____________________________________________________________________________________________ test_simple_case1 _____________________________________________________________________________________________</span><br><span class="line"></span><br><span class="line">    def test_simple_case1():</span><br><span class="line">        dic = &#123;<span class="string">&quot;key1&quot;</span>: <span class="string">&quot;123&quot;</span>, <span class="string">&quot;key2&quot;</span>: <span class="string">&quot;456&quot;</span>&#125;</span><br><span class="line">&gt;       assert dic == &#123;<span class="string">&quot;key1&quot;</span>: <span class="string">&quot;1231&quot;</span>, <span class="string">&quot;key2&quot;</span>: <span class="string">&quot;456&quot;</span>&#125;</span><br><span class="line">E       AssertionError: assert &#123;<span class="string">&#x27;key1&#x27;</span>: <span class="string">&#x27;123&#x27;</span>, <span class="string">&#x27;key2&#x27;</span>: <span class="string">&#x27;456&#x27;</span>&#125; == &#123;<span class="string">&#x27;key1&#x27;</span>: <span class="string">&#x27;123...&#x27;</span>key2<span class="string">&#x27;: &#x27;</span>456<span class="string">&#x27;&#125;</span></span><br><span class="line"><span class="string">E         Omitting 1 identical items, use -vv to show</span></span><br><span class="line"><span class="string">E         Differing items:</span></span><br><span class="line"><span class="string">E         &#123;&#x27;</span>key1<span class="string">&#x27;: &#x27;</span>123<span class="string">&#x27;&#125; != &#123;&#x27;</span>key1<span class="string">&#x27;: &#x27;</span>1231<span class="string">&#x27;&#125;</span></span><br><span class="line"><span class="string">E         Use -v to get the full diff</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">dic        = &#123;&#x27;</span>key1<span class="string">&#x27;: &#x27;</span>123<span class="string">&#x27;, &#x27;</span>key2<span class="string">&#x27;: &#x27;</span>456<span class="string">&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>   输出内容包含了 dic 变量的值<br>   <br></p>
+<h2 id="12-—tb-style-参数"><a href="#12-—tb-style-参数" class="headerlink" title="12. —tb&#x3D;style 参数"></a>12. —tb&#x3D;style 参数</h2><ul>
+<li>—tb&#x3D;no，屏蔽所有错误信息的输出</li>
+<li>—tb&#x3D;line，仅显示错误的位置</li>
+<li>—tb&#x3D;short，仅输出assert一行以及系统判定的内容</li>
+<li>—tb&#x3D;long，错误信息最为详细</li>
+<li>—tb&#x3D;auto(default)，如果多个用例失败，仅打印第一个和最后一个的错误信息，格式与long一致</li>
+<li>—tb&#x3D;native，只显示Python标准库的错误信息</li>
+</ul>
+<br>
+
+<h2 id="13-—durations-N-参数"><a href="#13-—durations-N-参数" class="headerlink" title="13. —durations&#x3D;N 参数"></a>13. —durations&#x3D;N 参数</h2><p>   用来统计N个运行时长最长的用例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pytest request_test.py --durations=100000</span><br></pre></td></tr></table></figure>
+
+<p>   运行效果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ pytest request_test.py --durations=100000</span><br><span class="line">=========================================================================================== <span class="built_in">test</span> session starts ============================================================================================</span><br><span class="line">platform win32 -- Python 3.8.10, pytest-6.2.5, py-1.10.0, pluggy-1.0.0</span><br><span class="line">rootdir: D:\python_demo\pytest</span><br><span class="line">collected 3 items                                                                                                                                                                                           </span><br><span class="line"></span><br><span class="line">request_test.py ...                                                                                                                                                                                   [100%]</span><br><span class="line"></span><br><span class="line">========================================================================================= slowest 100000 durations =========================================================================================</span><br><span class="line">0.25s call     request_test.py::test_upload</span><br><span class="line">0.24s call     request_test.py::test_detail</span><br><span class="line">0.23s call     request_test.py::test_clean</span><br><span class="line"></span><br><span class="line">(6 durations &lt; 0.005s hidden.  Use -vv to show these durations.)</span><br><span class="line">============================================================================================ 3 passed <span class="keyword">in</span> 0.80s ============================================================================================</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">mzy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/03/14/Pytest%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">http://example.com/2026/03/14/Pytest%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">仙女17</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/14/Groovy-Intro/" title="Groovy-Intro"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Groovy-Intro</div></div><div class="info-2"><div class="info-item-1">Groovy概述Groovy是一个面向Java平台的面向对象语言，与Java有很好的兼容性，同时Groovy也是JMeter JSR223推荐的默认语言，在使用JMeter时经常会用到该语言。 官方文档groovy.lang.org w3c-groovy Groovy环境搭建 进入www.groovy-lang.org/download.html下载Windows安装程序 安装时选择Typical，完成安装（自动新增环境变量） 打开cmd,输入groovy -v,如果显示版本信息，则安装成功 进入https://code.visualstudio.com/，下载Vscode 在Vscode中下载Groovy编写、运行插件Code Runner、code-groovy    新建一个文件,语言选择groovy 编写代码    1println(&quot;Hello world&quot;);  点击鼠标右键，选择Run Code,OUT PUT输入如下  Groovy变量申明Groovy有两种申明变量的方式，一种是与Java一样指定变量的类型，一种是使用关键字def以下是两种申明...</div></div></div></a><a class="pagination-related" href="/2026/03/14/Pytest%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E7%AE%80%E4%BB%8B/" title="Pytest运行机制简介"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Pytest运行机制简介</div></div><div class="info-2"><div class="info-item-1">1. Pytest运行机制简介 如果有指定目录，就从指定的目录查找；没有指定，默认当前目录 查找该目录及其子目录下的测试文件 测试文件名称需满足 test_*.py 或 *_test.py 的格式 文件内的函数名称需以 test 开头 文件内的类名称需以 Test 开头，并会筛选掉有 init 函数的的类 再查找类中以 Test_ 开头的类方法    2.应当遵守的命名规范&emsp; 为了保证我们编写的用例能按照预想的方式运行，我们需要遵守以下命名规范：  测试文件应遵守 test_filename.py 或 filename_test.py 的命名方式； 测试函数应遵守 test_casename 的命名方式; 测试类应该遵守 TestClassName 的命名方式;    3. 修改默认的运行规则&emsp;修改 pytest.ini 文件，该文件位置防止与项目根目录。  修改默认的测试文件命名方式   如：测试文件前缀需要统一为项目名，purchase_*.py   12[pytest]python_files = purchase_*  修改默认的测试函数命名方式   ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">mzy</div><div class="author-info-description">Preparation is the key🔑</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%BF%90%E8%A1%8C%E5%8D%95%E4%B8%AA%E7%94%A8%E4%BE%8B"><span class="toc-number">1.</span> <span class="toc-text">1.  运行单个用例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-help%E9%80%89%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">2. help选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-k-%E5%8F%82%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">3. -k 参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-m-%E5%8F%82%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">4. -m 参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-x-%E5%8F%82%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">5.  -x 参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-maxfail-num-%E5%8F%82%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">6. -maxfail&#x3D;num 参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-s-%E2%80%94capture-no"><span class="toc-number">7.</span> <span class="toc-text">7. -s || —capture&#x3D;no</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E2%80%94lf-%E2%80%94last-failed-%E4%B8%8E-%E2%80%94ff-%E2%80%94failed-first"><span class="toc-number">8.</span> <span class="toc-text">8. —lf(—last-failed) 与 —ff(—failed-first)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-v-%E2%80%94verbose-%E5%8F%82%E6%95%B0"><span class="toc-number">9.</span> <span class="toc-text">9. -v || —verbose 参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-q-%E2%80%94quiet-%E5%8F%82%E6%95%B0"><span class="toc-number">10.</span> <span class="toc-text">10. -q || —quiet 参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-l-%E2%80%94showlocals"><span class="toc-number">11.</span> <span class="toc-text">11. -l || —showlocals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E2%80%94tb-style-%E5%8F%82%E6%95%B0"><span class="toc-number">12.</span> <span class="toc-text">12. —tb&#x3D;style 参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E2%80%94durations-N-%E5%8F%82%E6%95%B0"><span class="toc-number">13.</span> <span class="toc-text">13. —durations&#x3D;N 参数</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/JSR223-Assertion/" title="JSR223-Assertion">JSR223-Assertion</a><time datetime="2026-03-14T11:31:59.000Z" title="发表于 2026-03-14 19:31:59">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/Jmeter%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E8%AF%B7%E6%B1%82%E5%A4%B4%E5%90%8E%EF%BC%8C%E5%AF%B9%E5%8D%95%E4%B8%AA%E6%8E%A5%E5%8F%A3%E9%87%8D%E6%96%B0%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%A4%B4/" title="Jmeter设置全局请求头后，对单个接口重新设置请求头">Jmeter设置全局请求头后，对单个接口重新设置请求头</a><time datetime="2026-03-14T11:27:32.000Z" title="发表于 2026-03-14 19:27:32">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/JMeter-Parallel-Controller%E5%92%8CSampler/" title="JMeter-Parallel-Controller和Sampler">JMeter-Parallel-Controller和Sampler</a><time datetime="2026-03-14T11:25:53.000Z" title="发表于 2026-03-14 19:25:53">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/Groovy-Intro/" title="Groovy-Intro">Groovy-Intro</a><time datetime="2026-03-14T11:24:16.000Z" title="发表于 2026-03-14 19:24:16">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/Pytest%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Pytest常用命令">Pytest常用命令</a><time datetime="2026-03-14T11:22:44.000Z" title="发表于 2026-03-14 19:22:44">2026-03-14</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By mzy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

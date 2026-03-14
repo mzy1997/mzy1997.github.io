@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>JSR223-Assertion | 仙女17</title><meta name="author" content="mzy"><meta name="copyright" content="mzy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近在为JMeter的接口做断言，一开始想选用JMeter提供的响应断言或Json断言，但最后发现这俩玩意儿不太适合我，因为我已经习惯了使用chai.js一套撸完所有断言的方式，而JMeter提供的两种断言限制太多，有时候需要建多个断言才能校验完所有字段，最后我选择了JSR223 Assertion.  The JSR223 Assertion allows JSR223 script code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSR223-Assertion">
+<meta property="og:url" content="http://example.com/2026/03/14/JSR223-Assertion/index.html">
+<meta property="og:site_name" content="仙女17">
+<meta property="og:description" content="最近在为JMeter的接口做断言，一开始想选用JMeter提供的响应断言或Json断言，但最后发现这俩玩意儿不太适合我，因为我已经习惯了使用chai.js一套撸完所有断言的方式，而JMeter提供的两种断言限制太多，有时候需要建多个断言才能校验完所有字段，最后我选择了JSR223 Assertion.  The JSR223 Assertion allows JSR223 script code">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-03-14T11:31:59.000Z">
+<meta property="article:modified_time" content="2026-03-14T11:33:15.927Z">
+<meta property="article:author" content="mzy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "JSR223-Assertion",
+  "url": "http://example.com/2026/03/14/JSR223-Assertion/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2026-03-14T11:31:59.000Z",
+  "dateModified": "2026-03-14T11:33:15.927Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "mzy",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/03/14/JSR223-Assertion/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JSR223-Assertion',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">仙女17</span></a><a class="nav-page-title" href="/"><span class="site-name">JSR223-Assertion</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">JSR223-Assertion</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-14T11:31:59.000Z" title="发表于 2026-03-14 19:31:59">2026-03-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-14T11:33:15.927Z" title="更新于 2026-03-14 19:33:15">2026-03-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>最近在为JMeter的接口做断言，一开始想选用JMeter提供的响应断言或Json断言，但最后发现这俩玩意儿不太适合我，因为我已经习惯了使用chai.js一套撸完所有断言的方式，而JMeter提供的两种断言限制太多，有时候需要建多个断言才能校验完所有字段，最后我选择了JSR223 Assertion.</p>
+<blockquote>
+<p>The JSR223 Assertion allows JSR223 script code to be used to check the status of the previous sample</p>
+</blockquote>
+<br>
+因为groovy在JMeter中解析性能较好，上手也快，所以选择用groovy来写校验脚本
+
+<br>
+Documentation：
+
+<p><a target="_blank" rel="noopener" href="https://jmeter.apache.org/usermanual/component_reference.html#JSR223_Assertion">https://jmeter.apache.org/usermanual/component_reference.html#JSR223_Assertion</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.groovy-lang.org/documentation.html">http://www.groovy-lang.org/documentation.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3cschool.cn/groovy/">https://www.w3cschool.cn/groovy/</a></p>
+<br>
+
+<p>技术选型虽然做好了，但是存在一个技术难点，其他语言的assert库都是校验不通过自动抛出异常、输出异常信息，那么在JMeter中如何实现这一点呢？</p>
+<p>遇事不决先查官网，果然官网就是yyds</p>
+<blockquote>
+<p>The script can check various aspects of the <a target="_blank" rel="noopener" href="https://jmeter.apache.org/api/org/apache/jmeter/samplers/SampleResult.html">SampleResult</a>. If an error is detected, the script should use <strong>AssertionResult.setFailureMessage(“message”)</strong> and <strong>AssertionResult.setFailure(true)</strong>.</p>
+</blockquote>
+<p>官网提到了AssertionResult类，以及该类的两个与异常相关的方法，于是我就去查了下这个类。</p>
+<p><img src="/2026/03/14/JSR223-Assertion/assertion_methods.png" alt="Class"></p>
+<p><strong>setFailure：传入一个布尔值，标志该assertion是否失败</strong></p>
+<p><strong>setFailureMessage：传入一个字符串，作为异常信息</strong></p>
+<p>因此，大概思路已确定下来，我们可以针对status code、response body等内容进行校验，如果不通过，就将异常信息在failmessage变量里拼接，再调用setFailMessage方法，最后待所有校验做完了，我们再判断一下failmessage字符串是否为空，为空则表示校验通过，不为空我们就调用setFailure，并传入true标记该校验已失败。</p>
+<br>
+
+<p>以下为具体实现：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.google.gson.JsonParser;</span><br><span class="line"><span class="keyword">import</span> com.google.gson.JsonObject;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> failureMessage = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">def</span> json_response = <span class="literal">null</span>;</span><br><span class="line">JsonParser parse = <span class="keyword">new</span> JsonParser();</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    json_response = (JsonObject)parse.parse(prev.getResponseDataAsString());</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    failureMessage += <span class="string">&quot;Invalid JSON.\n&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!<span class="string">&quot;200&quot;</span>.equals(prev.getResponseCode()))&#123;</span><br><span class="line">    failureMessage += <span class="string">&quot;Expected &lt;response code&gt; [200] but we got instead [&quot;</span> + prev.getResponseCode() + <span class="string">&quot;]\n\n&quot;</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">res_result = json_response.result.getAsString();</span><br><span class="line"><span class="keyword">if</span>(!res_result || !res_result.equals(<span class="string">&quot;success&quot;</span>))&#123;</span><br><span class="line">    failureMessage += <span class="string">&quot;接口异常，接口返回[&quot;</span> + json_response.toString() + <span class="string">&quot;]\n\n&quot;</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印异常信息</span></span><br><span class="line"><span class="keyword">if</span> (failureMessage?.trim()) &#123;</span><br><span class="line">    failureMessage += <span class="string">&quot;URL: &quot;</span> + SampleResult.getURL() + <span class="string">&quot;\n\n&quot;</span>;     </span><br><span class="line">    failureMessage += <span class="string">&quot;JSON RESPONSE: &quot;</span> + json_response + <span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line">    failureMessage += <span class="string">&quot;REQUEST HEADERS: &quot;</span> + SampleResult.getRequestHeaders() + <span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">    AssertionResult.setFailureMessage(failureMessage);</span><br><span class="line">    AssertionResult.setFailure(true);   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回的异常信息：</p>
+<p><img src="/../../.vuepress/public/resource/jmeter/exception_message.png" alt="Untitled"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">mzy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/03/14/JSR223-Assertion/">http://example.com/2026/03/14/JSR223-Assertion/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">仙女17</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/03/14/Jmeter%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E8%AF%B7%E6%B1%82%E5%A4%B4%E5%90%8E%EF%BC%8C%E5%AF%B9%E5%8D%95%E4%B8%AA%E6%8E%A5%E5%8F%A3%E9%87%8D%E6%96%B0%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%A4%B4/" title="Jmeter设置全局请求头后，对单个接口重新设置请求头"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Jmeter设置全局请求头后，对单个接口重新设置请求头</div></div><div class="info-2"><div class="info-item-1">&emsp; &emsp; 最近公司在用jmeter做接口自动化，我平时jmeter用得比较少，一般拿来搞搞以验收为目的的性能测试，因此也是遇到了不少的问题。 &emsp; &emsp; 本文记录的问题是：对整个测试脚本设置全局的Header Manager后，如何对单个接口单独设置请求头。 &emsp; &emsp; 我们在做接口自动化时，会创建一个全局的Header Manager去存放一些公用的属性，例如身份认证、Content type等。application&#x2F;json是我们经常会使用的Content type，但如果遇到如图片、文件上传之类的接口，这个Content type就不适用了。 &emsp; &emsp; 一开始，我尝试对图片上传接口单独设置一个Header Manager，并坚信jmeter工具内部一定有类似变量作用域的机制，结果jmeter并没有。 &emsp; &emsp; 后来，我想了个比较笨的方法，那就是为图片上传接口添加一个前置的beanshell脚本，在上传接口执行之前，将Header Manager的Content type给去掉。...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">mzy</div><div class="author-info-description">Preparation is the key🔑</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/JSR223-Assertion/" title="JSR223-Assertion">JSR223-Assertion</a><time datetime="2026-03-14T11:31:59.000Z" title="发表于 2026-03-14 19:31:59">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/Jmeter%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E8%AF%B7%E6%B1%82%E5%A4%B4%E5%90%8E%EF%BC%8C%E5%AF%B9%E5%8D%95%E4%B8%AA%E6%8E%A5%E5%8F%A3%E9%87%8D%E6%96%B0%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%A4%B4/" title="Jmeter设置全局请求头后，对单个接口重新设置请求头">Jmeter设置全局请求头后，对单个接口重新设置请求头</a><time datetime="2026-03-14T11:27:32.000Z" title="发表于 2026-03-14 19:27:32">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/JMeter-Parallel-Controller%E5%92%8CSampler/" title="JMeter-Parallel-Controller和Sampler">JMeter-Parallel-Controller和Sampler</a><time datetime="2026-03-14T11:25:53.000Z" title="发表于 2026-03-14 19:25:53">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/Groovy-Intro/" title="Groovy-Intro">Groovy-Intro</a><time datetime="2026-03-14T11:24:16.000Z" title="发表于 2026-03-14 19:24:16">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/Pytest%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Pytest常用命令">Pytest常用命令</a><time datetime="2026-03-14T11:22:44.000Z" title="发表于 2026-03-14 19:22:44">2026-03-14</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By mzy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
