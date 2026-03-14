@@ -1,0 +1,326 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>初识Cypress | 仙女17</title><meta name="author" content="mzy"><meta name="copyright" content="mzy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="初识Cypress简介 JavaScript End to End Testing Framework 一款 All in one 的框架  同款比较All In One VS Others 原理比较Selenium    第一步：测试脚本（可以是各种语言编写）向Selenium Server发送请求，建立连接。     第二步：Selenium Server通过Launcher启动浏览器，并在浏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识Cypress">
+<meta property="og:url" content="http://example.com/2026/03/14/%E5%88%9D%E8%AF%86Cypress/index.html">
+<meta property="og:site_name" content="仙女17">
+<meta property="og:description" content="初识Cypress简介 JavaScript End to End Testing Framework 一款 All in one 的框架  同款比较All In One VS Others 原理比较Selenium    第一步：测试脚本（可以是各种语言编写）向Selenium Server发送请求，建立连接。     第二步：Selenium Server通过Launcher启动浏览器，并在浏">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-03-14T15:09:15.000Z">
+<meta property="article:modified_time" content="2026-03-14T15:10:17.504Z">
+<meta property="article:author" content="mzy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "初识Cypress",
+  "url": "http://example.com/2026/03/14/%E5%88%9D%E8%AF%86Cypress/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2026-03-14T15:09:15.000Z",
+  "dateModified": "2026-03-14T15:10:17.504Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "mzy",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/03/14/%E5%88%9D%E8%AF%86Cypress/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '初识Cypress',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">仙女17</span></a><a class="nav-page-title" href="/"><span class="site-name">初识Cypress</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">初识Cypress</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-14T15:09:15.000Z" title="发表于 2026-03-14 23:09:15">2026-03-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-14T15:10:17.504Z" title="更新于 2026-03-14 23:10:17">2026-03-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="初识Cypress"><a href="#初识Cypress" class="headerlink" title="初识Cypress"></a>初识Cypress</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>JavaScript End to End Testing Framework</li>
+<li>一款 All in one 的框架</li>
+</ul>
+<h3 id="同款比较"><a href="#同款比较" class="headerlink" title="同款比较"></a>同款比较</h3><h4 id="All-In-One-VS-Others"><a href="#All-In-One-VS-Others" class="headerlink" title="All In One VS Others"></a>All In One VS Others</h4><p><img src="/CypressAllInOne.png" alt="AllInOne"></p>
+<h4 id="原理比较"><a href="#原理比较" class="headerlink" title="原理比较"></a>原理比较</h4><p><strong>Selenium</strong></p>
+<pre><code>   第一步：测试脚本（可以是各种语言编写）向Selenium Server发送请求，建立连接。
+
+   第二步：Selenium Server通过Launcher启动浏览器，并在浏览器中嵌入Selenium Core的JS代码库，然后再将浏览器的代理设置为Selenium Server的Http proxy。
+
+   第三步：测试脚本向Selenium Server发送Http请求，Selenium Server解析请求，并通过Http proxy调用被嵌入的Selenium Core。
+
+   第四步：Selenium Core接受到请求，通过JS控制浏览器完成响应的操作。
+
+   第五步：如果操作过程中，浏览器端发送了请求，因为浏览器的代理访问地址为Selenium Server的Http proxy地址，那么Selenium Server就会接受到这个浏览器的请求，Selenium Server解析、重组请求后，将请求发送到Web服务器去。
+
+   第六步：Web服务器接受到请求，返回响应结果给Selenium Server。
+
+   第七步：Selenium Server将响应结果发送到浏览器端
+</code></pre>
+<p><strong>webdriver</strong></p>
+<p>第一步：测试脚本（客户端）调用浏览器驱动，该浏览器驱动去启动对应的浏览器（在新线程中）。</p>
+<p>第二步：启动后，WebDriver将浏览器绑定到特定的端口上（服务器），此浏览器便成了该WebDriver的Remote Server</p>
+<p>第三步：测试脚本（客户端）创建一个Session，并通过Http协议向Remote Server（浏览器，可以看做服务器）发送restful请求，Remote Server接受到请求后，解析为该浏览器的内部接口来调用，完成相应的操作并接受response</p>
+<pre><code> 第四步：测试脚本（客户端）接受到服务器端的response，决定是继续发送请求还是结束脚本
+</code></pre>
+<p><strong>Cypress</strong></p>
+<p><img src="/CypressWorkFlow.png" alt="HowToWork"></p>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>Cypress</th>
+<th>Selenium</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>支持语言</td>
+<td>Javascript</td>
+<td>Java, C#, Python, Ruby, R, Dart, Objective-C、Javascript等</td>
+</tr>
+<tr>
+<td>支持浏览器</td>
+<td>Chrome</td>
+<td>各种主流浏览器</td>
+</tr>
+<tr>
+<td>主要使用者</td>
+<td>Tester、developer</td>
+<td>Tester</td>
+</tr>
+<tr>
+<td>使用的测试框架</td>
+<td>Mocha</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td>是否需要浏览器驱动器</td>
+<td>否</td>
+<td>需要</td>
+</tr>
+<tr>
+<td>测试速度</td>
+<td>快</td>
+<td>略慢</td>
+</tr>
+<tr>
+<td>录制测试视频、快照</td>
+<td>支持</td>
+<td>支持，但需要自己写</td>
+</tr>
+<tr>
+<td>可交互</td>
+<td>可以</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>社区支持</td>
+<td>略显薄弱</td>
+<td>强大</td>
+</tr>
+</tbody></table>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p><img src="/2026/03/14/%E5%88%9D%E8%AF%86Cypress/features.jpg" alt="Features"></p>
+<ul>
+<li><strong>时间穿梭</strong>：Cypress会在测试运行时拍摄快照。只需将鼠标悬停在“ 命令日志”中的命令上，即可准确查看每一步都发生了什么</li>
+<li><strong>可调试性</strong>：停止猜测你的测试失败的原因。直接从熟悉的工具如Chrome DevTools进行调试。我们可读的错误和堆栈跟踪使调试更加快速便捷。</li>
+<li><strong>实时重载</strong>：每当你对测试进行更改时，Cypress都会自动重新加载。查看应用程序中实时执行的命令。</li>
+<li><strong>自动等待</strong>：不要在测试中添加等待或休眠。Cypress在继续下一步之前会自动等待元素至可操作状态时才会执行命令或断言。异步操作不再是噩梦。</li>
+<li><strong>运行结果一致性</strong>：Cypress架构不使用Selenium或Webdriver,在运行速度，可靠性测试，测试结果一致性上均有良好的保障。</li>
+<li><strong>截图和视频</strong>：Cypress在测试运行失败时自动截图，在无头运行时录制整个测试套件的视频，使你轻松掌握测试运行情况。</li>
+</ul>
+<h3 id="安装手册"><a href="#安装手册" class="headerlink" title="安装手册"></a>安装手册</h3><h4 id="require"><a href="#require" class="headerlink" title="require:"></a>require:</h4><ol>
+<li>Windows 7+</li>
+<li>NPM</li>
+<li>Cypress</li>
+</ol>
+<h4 id="Step"><a href="#Step" class="headerlink" title="Step:"></a>Step:</h4><ol>
+<li>生成pakage.json<ol>
+<li><p>创建一个文件夹</p>
+</li>
+<li><p>进入该文件夹，执行</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行安装命令</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 配置安装源</span><br><span class="line">npm install cypress</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开Cypress</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 进入cypress安装路径</span><br><span class="line">yarn run cypress open</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><ul>
+<li><strong>fixtures 测试夹具</strong></li>
+<li><strong>integration测试文件</strong></li>
+<li><strong>plugin file 插件文件</strong></li>
+<li><strong>support file 支持文件</strong></li>
+</ul>
+<h3 id="skip-and-only"><a href="#skip-and-only" class="headerlink" title="skip and only"></a>skip and only</h3><h3 id="钩子函数"><a href="#钩子函数" class="headerlink" title="钩子函数"></a>钩子函数</h3><ul>
+<li>before</li>
+<li>beforeeach</li>
+<li>after</li>
+<li>aftereach</li>
+</ul>
+<h3 id="几种定位方法"><a href="#几种定位方法" class="headerlink" title="几种定位方法"></a>几种定位方法</h3><ul>
+<li><p>Cypress特有定位方法</p>
+<ol>
+<li>data-cy</li>
+<li>data-test</li>
+<li>data-testid</li>
+</ol>
+<p>  但需要开发时，添加该属性</p>
+<p>  假如存在元素</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">data-cy</span>=<span class="string">&#x27;spec&#x27;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  In Cypress:</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cy.<span class="title function_">get</span>(<span class="string">&#x27;[data-cy=spec]&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常规定位方法</p>
+<ol>
+<li><p>ID选择器定位</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cy.<span class="title function_">get</span>(<span class="string">&#x27;#id_name&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>class选择器定位</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cy.<span class="title function_">get</span>(<span class="string">&#x27;.class_name&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性选择器定位</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cy.<span class="title function_">get</span>(<span class="string">&quot;button[id=&#x27;main2&#x27;]&quot;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>省略更多css选择器</p>
+</li>
+<li><p>Xpath</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install cypress xpath</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><p><a href="">BDD</a></p>
+<ul>
+<li>expect</li>
+<li>should</li>
+</ul>
+<p><a href="">TDD</a></p>
+<ul>
+<li>assert</li>
+</ul>
+<h3 id="Page-Object"><a href="#Page-Object" class="headerlink" title="Page Object"></a><strong>Page Object</strong></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">LoginPage</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">userNameLocator</span> = <span class="string">&#x27;input[name=username]&#x27;</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">passwordLocator</span> = <span class="string">&#x27;input[name=password]&#x27;</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">formLocator</span> = <span class="string">&#x27;form&#x27;</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">url</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">get</span> <span class="title function_">username</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> cy.<span class="title function_">get</span>(<span class="variable language_">this</span>.<span class="property">userNameLocator</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">get</span> <span class="title function_">password</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> cy.<span class="title function_">get</span>(<span class="variable language_">this</span>.<span class="property">passwordLocator</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">get</span> <span class="title function_">form</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> cy.<span class="title function_">get</span>(<span class="variable language_">this</span>.<span class="property">formLocator</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">isTargetPage</span>(<span class="params"></span>) &#123;</span><br><span class="line">        cy.<span class="title function_">visit</span>(<span class="string">&#x27;/login&#x27;</span>)</span><br><span class="line">        cy.<span class="title function_">url</span>().<span class="title function_">should</span>(<span class="string">&#x27;eq&#x27;</span>, <span class="variable language_">this</span>.<span class="property">url</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">login</span>(<span class="params">username, pwd</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">username</span>.<span class="title function_">type</span>(username)</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">password</span>.<span class="title function_">type</span>(pwd)</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">form</span>.<span class="title function_">submit</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编写接口测试"><a href="#编写接口测试" class="headerlink" title="编写接口测试"></a>编写接口测试</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;登录测试套件&#x27;</span>, <span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="title function_">context</span>(<span class="string">&quot;登录测试&quot;</span>, <span class="function">()=&gt;</span>&#123;</span><br><span class="line">        it.<span class="title function_">skip</span>(<span class="string">&#x27;api登录&#x27;</span>, <span class="function">()=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">const</span> username = <span class="string">&#x27;13281827725&#x27;</span></span><br><span class="line">            <span class="keyword">const</span> password = <span class="string">&#x27;mzy19971011&#x27;</span></span><br><span class="line">            <span class="keyword">let</span> token = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">            cy.<span class="title function_">request</span>(&#123;</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">&#x27;https://new-app.yuncaitong.cn/api/auth?captcha=undefined&#x27;</span>,</span><br><span class="line">                <span class="attr">body</span>: &#123;<span class="string">&quot;username&quot;</span>:<span class="string">&quot;13281827725&quot;</span>,<span class="string">&quot;password&quot;</span>:<span class="string">&quot;mzy19971011&quot;</span>&#125;</span><br><span class="line">            &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">                cy.<span class="title function_">log</span>(res.<span class="property">body</span>)</span><br><span class="line">                token = res.<span class="property">body</span></span><br><span class="line">                cy.<span class="title function_">log</span>(token)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">            cy.<span class="title function_">request</span>(&#123;</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">mzy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/03/14/%E5%88%9D%E8%AF%86Cypress/">http://example.com/2026/03/14/%E5%88%9D%E8%AF%86Cypress/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">仙女17</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2026/03/14/JMeter%E5%86%85%E7%BD%AE%E5%8F%98%E9%87%8F-vars/" title="JMeter内置变量-vars"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">JMeter内置变量-vars</div></div></div></a><a class="pagination-related" href="/2026/03/14/Selenium%E4%B8%8EWebDriver%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" title="Selenium与WebDriver的工作原理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Selenium与WebDriver的工作原理</div></div><div class="info-2"><div class="info-item-1">​	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要说当下有哪些炙手可热的自动化技术，Selenium绝对占据了一席之地。无论是各大测试论坛，还是众多培训机构的课程里，都常常提到Selenium这个UI测试技术。现在我们讨论的Selenium，通常是Selenium3(Selenium+WebDriver)。但在很多年前，Selenium与WebDriver是两个拥有不同原理的技术。 ​&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selenium 123456789graph TB Selenium --&gt; SeleniumIDESelenium --&gt; SeleniumGridSelenium --&gt; SeleniumServerSeleniumServer --&gt;|核心库| SeleniumCoreSeleniumServer --&gt;|代理服务器| HttpProxySeleniumServer --&gt;|启动浏览器| Launcher    &nbsp;&nbsp;&nbsp;&nbsp...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">mzy</div><div class="author-info-description">Preparation is the key🔑</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E8%AF%86Cypress"><span class="toc-number">1.</span> <span class="toc-text">初识Cypress</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E6%AC%BE%E6%AF%94%E8%BE%83"><span class="toc-number">1.2.</span> <span class="toc-text">同款比较</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#All-In-One-VS-Others"><span class="toc-number">1.2.1.</span> <span class="toc-text">All In One VS Others</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E6%AF%94%E8%BE%83"><span class="toc-number">1.2.2.</span> <span class="toc-text">原理比较</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C"><span class="toc-number">1.4.</span> <span class="toc-text">安装手册</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#require"><span class="toc-number">1.4.1.</span> <span class="toc-text">require:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Step"><span class="toc-number">1.4.2.</span> <span class="toc-text">Step:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.5.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#skip-and-only"><span class="toc-number">1.6.</span> <span class="toc-text">skip and only</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0"><span class="toc-number">1.7.</span> <span class="toc-text">钩子函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%A0%E7%A7%8D%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%B3%95"><span class="toc-number">1.8.</span> <span class="toc-text">几种定位方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E8%A8%80"><span class="toc-number">1.9.</span> <span class="toc-text">断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Page-Object"><span class="toc-number">1.10.</span> <span class="toc-text">Page Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95"><span class="toc-number">1.11.</span> <span class="toc-text">编写接口测试</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/%E5%9C%A8Beanshell%E8%84%9A%E6%9C%AC%E4%B8%AD%E8%BF%9Eredis%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/" title="在Beanshell脚本中连redis遇到的坑">在Beanshell脚本中连redis遇到的坑</a><time datetime="2026-03-14T15:12:04.000Z" title="发表于 2026-03-14 23:12:04">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/JMeter%E5%86%85%E7%BD%AE%E5%8F%98%E9%87%8F-vars/" title="JMeter内置变量-vars">JMeter内置变量-vars</a><time datetime="2026-03-14T15:11:07.000Z" title="发表于 2026-03-14 23:11:07">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/%E5%88%9D%E8%AF%86Cypress/" title="初识Cypress">初识Cypress</a><time datetime="2026-03-14T15:09:15.000Z" title="发表于 2026-03-14 23:09:15">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/Selenium%E4%B8%8EWebDriver%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" title="Selenium与WebDriver的工作原理">Selenium与WebDriver的工作原理</a><time datetime="2026-03-14T15:07:54.000Z" title="发表于 2026-03-14 23:07:54">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/mocha%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="mocha环境搭建">mocha环境搭建</a><time datetime="2026-03-14T15:05:56.000Z" title="发表于 2026-03-14 23:05:56">2026-03-14</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By mzy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
