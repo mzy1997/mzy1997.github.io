@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BurpSuite和Sqlmap入门 | 猪儿虫17</title><meta name="author" content="mzy"><meta name="copyright" content="mzy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="弱口令爆破  应用场景 系统密码包含大量弱口令，诸如12345、abc、账号密码相同，攻击者就可以利用该漏洞获取较高权限账号  爆破工具 Burp Suite,常用功能抓包（Proxy）、重放（Repeater）、爆破（Intruder）  常用功能介绍  Prox  Repeater         手动点击Go一键发送请求的组件   **Intruder**     本次重点介绍Intrud">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>BurpSuite和Sqlmap入门 | 笨蛋17</title><meta name="author" content="mzy"><meta name="copyright" content="mzy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="弱口令爆破   应用场景  系统密码包含大量弱口令，诸如12345、abc、账号密码相同，攻击者就可以利用该漏洞获取较高权限账号  爆破工具  Burp Suite,常用功能抓包（Proxy）、重放（Repeater）、爆破（Intruder）  常用功能介绍  Prox  Repeater 手动点击Go一键发送请求的组件 Intruder 本次重点介绍Intruder组件，Intruder组件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BurpSuite和Sqlmap入门">
 <meta property="og:url" content="http://example.com/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/index.html">
-<meta property="og:site_name" content="猪儿虫17">
-<meta property="og:description" content="弱口令爆破  应用场景 系统密码包含大量弱口令，诸如12345、abc、账号密码相同，攻击者就可以利用该漏洞获取较高权限账号  爆破工具 Burp Suite,常用功能抓包（Proxy）、重放（Repeater）、爆破（Intruder）  常用功能介绍  Prox  Repeater         手动点击Go一键发送请求的组件   **Intruder**     本次重点介绍Intrud">
+<meta property="og:site_name" content="笨蛋17">
+<meta property="og:description" content="弱口令爆破   应用场景  系统密码包含大量弱口令，诸如12345、abc、账号密码相同，攻击者就可以利用该漏洞获取较高权限账号  爆破工具  Burp Suite,常用功能抓包（Proxy）、重放（Repeater）、爆破（Intruder）  常用功能介绍  Prox  Repeater 手动点击Go一键发送请求的组件 Intruder 本次重点介绍Intruder组件，Intruder组件">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/butterfly-icon.png">
 <meta property="article:published_time" content="2026-03-14T09:05:01.000Z">
-<meta property="article:modified_time" content="2026-03-14T09:13:43.926Z">
+<meta property="article:modified_time" content="2026-03-14T10:07:23.877Z">
 <meta property="article:author" content="mzy">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
@@ -17,7 +17,7 @@
   "url": "http://example.com/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/",
   "image": "http://example.com/img/butterfly-icon.png",
   "datePublished": "2026-03-14T09:05:01.000Z",
-  "dateModified": "2026-03-14T09:13:43.926Z",
+  "dateModified": "2026-03-14T10:07:23.877Z",
   "author": [
     {
       "@type": "Person",
@@ -158,65 +158,46 @@
   isHighlightShrink: false,
   isToc: false,
   pageType: 'post'
-}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">猪儿虫17</span></a><a class="nav-page-title" href="/"><span class="site-name">BurpSuite和Sqlmap入门</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">BurpSuite和Sqlmap入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-14T09:05:01.000Z" title="发表于 2026-03-14 17:05:01">2026-03-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-14T09:13:43.926Z" title="更新于 2026-03-14 17:13:43">2026-03-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><ul>
-<li><p>弱口令爆破</p>
-<ol>
-<li><p>应用场景</p>
-<p>系统密码包含大量弱口令，诸如12345、abc、账号密码相同，攻击者就可以利用该漏洞获取较高权限账号</p>
-</li>
-<li><p>爆破工具</p>
-<p>Burp Suite,常用功能抓包（Proxy）、重放（Repeater）、爆破（Intruder）</p>
-</li>
-<li><p>常用功能介绍</p>
-<p> Prox</p>
-<p><img src="/proxy.png" alt="Proxy"></p>
-<p><strong>Repeater</strong></p>
-</li>
-</ol>
-</li>
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">笨蛋17</span></a><a class="nav-page-title" href="/"><span class="site-name">BurpSuite和Sqlmap入门</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">BurpSuite和Sqlmap入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-14T09:05:01.000Z" title="发表于 2026-03-14 17:05:01">2026-03-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-14T10:07:23.877Z" title="更新于 2026-03-14 18:07:23">2026-03-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><ul>
+<li><strong>弱口令爆破</strong></li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/435853a621ef4331a9969020139679b9.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTg3MDE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre><code>   手动点击Go一键发送请求的组件
-
- **Intruder**
-
-   本次重点介绍Intruder组件，Intruder组件拥有4个模块，分别是Target、Positions、Payloads、Options
-
-   ---
-
-  **Target**
-
-  ![Target](https://img-blog.csdnimg.cn/c9fec06411a14c41a30dacb6ef751083.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTg3MDE3,size_16,color_FFFFFF,t_70)
-
-
-   Target模块，主要用于配置被爆破网站的主机与端口，默认为http方式，可以勾选Use HTTPS发送https的请求
-
-   ---
-
-   **Position**
-
-   ![Position](https://img-blog.csdnimg.cn/0f20acd2ca28487386a63d7cacf9760e.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTg3MDE3,size_16,color_FFFFFF,t_70)
-
-
-   首先，该页面展示被爆破的请求，包含请求类型、请求地址、请求头、请求参数。
-
-   其次，Attack type为爆破策略，一共提供了4种，包含：
-
-   **Sniper**模式，采用单个payload进行爆破。这种爆破类型适合对请求内的参数进行单独爆破
-
-   **Battering ram**模式，也是采用单个payload进行爆破。但是与Sniper不同的是，当有多个需要爆破的参数时，Sniper模式会对每个参数执行一遍payload；Battering ram模式则是多个参数一起执行一遍payload。举个栗子，现有账户密码两个参数需要爆破，已选一个0-9的payload,Sniper模式先对账号执行一次payload，再对密码执行一次payload，一共20次；Battering ram模式对账号密码一起执行一次payload，一共10次；
-
-   **PitchFork**模式：只能选一个payload，所有参数皆执行该payload，如有参数a、b、c，执行次数为a.payload X b.payload X c.payload
-
-   **Add、Clear、Auto、Refresh**操作参数
-
- ![start attack](https://img-blog.csdnimg.cn/0fda573c588045429d0f3df2c6827575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTg3MDE3,size_16,color_FFFFFF,t_70)
-</code></pre>
+<ol>
+<li>应用场景</li>
+</ol>
+<p>系统密码包含大量弱口令，诸如12345、abc、账号密码相同，攻击者就可以利用该漏洞获取较高权限账号</p>
+<ol start="2">
+<li>爆破工具</li>
+</ol>
+<p>Burp Suite,常用功能抓包（Proxy）、重放（Repeater）、爆破（Intruder）</p>
+<ol start="3">
+<li>常用功能介绍</li>
+</ol>
+<p>Prox</p>
+<p><img src="/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/proxy.png" alt="Proxy"></p>
+<p><strong>Repeater</strong><br><img src="/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/repeater.png" alt="Repeater"></p>
+<p>手动点击Go一键发送请求的组件</p>
+<p><strong>Intruder</strong></p>
+<p>本次重点介绍Intruder组件，Intruder组件拥有4个模块，分别是Target、Positions、Payloads、Options</p>
+<hr>
+<p><strong>Target</strong></p>
+<p><img src="/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/target.png" alt="Target"></p>
+<p>Target模块，主要用于配置被爆破网站的主机与端口，默认为http方式，可以勾选Use HTTPS发送https的请求</p>
+<hr>
+<p><strong>Position</strong></p>
+<p><img src="/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/position.png" alt="Position"></p>
+<p>首先，该页面展示被爆破的请求，包含请求类型、请求地址、请求头、请求参数。</p>
+<p>其次，Attack type为爆破策略，一共提供了4种，包含：</p>
+<p><strong>Sniper</strong>模式，采用单个payload进行爆破。这种爆破类型适合对请求内的参数进行单独爆破</p>
+<p><strong>Battering ram</strong>模式，也是采用单个payload进行爆破。但是与Sniper不同的是，当有多个需要爆破的参数时，Sniper模式会对每个参数执行一遍payload；Battering ram模式则是多个参数一起执行一遍payload。举个栗子，现有账户密码两个参数需要爆破，已选一个0-9的payload,Sniper模式先对账号执行一次payload，再对密码执行一次payload，一共20次；Battering ram模式对账号密码一起执行一次payload，一共10次；</p>
+<p><strong>PitchFork</strong>模式：只能选一个payload，所有参数皆执行该payload，如有参数a、b、c，执行次数为a.payload X b.payload X c.payload</p>
+<p><strong>Add、Clear、Auto、Refresh</strong>操作参数</p>
+<p><img src="/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/attack.png" alt="start attack"></p>
 <ul>
-<li><p><strong>Sqlmap注入</strong></p>
+<li><strong>Sqlmap注入</strong></li>
+</ul>
 <ol>
 <li><p>所需环境</p>
-<p>python2.7，sqlmap.py</p>
+<p> python2.7，sqlmap.py</p>
 </li>
 <li><p>测试所需资源</p>
 <ul>
@@ -225,18 +206,22 @@
 </ul>
 </li>
 <li><p>单次检测</p>
+</li>
+</ol>
 <ul>
 <li>Get</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[sqlmap.py](http://sqlmap.py/) -u “[http://www.aaaa.com/xxxxx/gorepay-projectID_10-repayPlanID_46-periodNumber_2.html”](http://www.aaaa.com/xxxxx/gorepay-projectID_10-repayPlanID_46-periodNumber_2.html%E2%80%9D) --cookie=“_fmdata=0E97D79D747B983006FB09DAD60A349E7C023A44A3532E46E3AFB9936C4D45DB80647EFE905132167DAE9081F89D13AA86DADEDF8E69E484;”</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>Post</p>
-<p>使用Burp suite拦截数据包，保存在文件里，使用-r读取文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap.py -r <span class="string">&quot;D://file_location&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li>Post</li>
 </ul>
-</li>
-<li><p>可选参数</p>
+<p>使用Burp suite拦截数据包，保存在文件里，使用-r读取文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap.py -r <span class="string">&quot;D://file_location&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>可选参数</li>
+</ol>
 <ul>
 <li>–dbs：获取数据库的所有库</li>
 <li>–is-dba：判断当前用户是否为数据库管理员</li>
@@ -248,13 +233,15 @@
 
 <p>结果如图：</p>
 <p>没注入点的运行结果</p>
-<p> <img src="https://img-blog.csdnimg.cn/df70edc50a8e469ea66584fd02ce1b14.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTg3MDE3,size_16,color_FFFFFF,t_70" alt="无注入点"></p>
-<p> 有注入点</p>
-<p> <img src="https://img-blog.csdnimg.cn/531e259f494b48d689378fc6f3c1f77d.png" alt="有注入点"></p>
+<p><img src="/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/no_inject.png" alt="无注入点"></p>
+<p>有注入点</p>
+<p><img src="/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/inject.png" alt="有注入点"></p>
 <ol>
-<li><p>批量执行</p>
+<li>批量执行</li>
+</ol>
 <ul>
-<li><p>方案一：sqlmap api</p>
+<li>方案一：sqlmap api</li>
+</ul>
 <p>大致流程：</p>
 <p>1️⃣ 通过 <a target="_blank" rel="noopener" href="http://sqlmapapi.py/">sqlmapapi.py</a> -s 开启sqlmap api的服务端。服务端启动后，在服务端命令行中会返回一个随机的admin token值，这个token值用于管理taskid（获取、清空操作），在这个流程中不需要amin token这个值，可以忽略。服务端会处于一个等待客户端的状态。</p>
 <p>2️⃣ 通过GET请求 <a target="_blank" rel="noopener" href="http://ip/">http://ip</a>:port&#x2F;task&#x2F;new 这个地址，即可创建一个新的扫描任务，在响应中会返回一个随机的taskid。这个taskid在这个流程中尤为重要，因此需要通过变量存储下来，方便后面程序的调用。</p>
@@ -262,19 +249,13 @@
 <p>4️⃣ 通过GET请求 <a target="_blank" rel="noopener" href="http://ip/">http://ip</a>:port&#x2F;scan&#x2F;&#x2F;status 地址，即可获取指定的taskid的扫描状态。这个返回值分为两种，一种是run状态（扫描未完成），一种是terminated状态（扫描完成）。</p>
 <p>5️⃣ 判断扫描状态，如果扫描未完成，再次请求 <a target="_blank" rel="noopener" href="http://ip/">http://ip</a>:port&#x2F;scan&#x2F;&#x2F;status 地址 ，直到扫描完成。</p>
 <p>6️⃣ 扫描完成后获取扫描的结果，是否是SQL注入，若不存在SQL注入，data字段为空，若存在SQL注入，则会返回数据库类型、payload等等</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> parse</span><br><span class="line"></span><br><span class="line">response = requests.get(<span class="string">&quot;http://127.0.0.1:8775/task/new&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(response.json())</span><br><span class="line">taskid = response.json()[<span class="string">&quot;taskid&quot;</span>]</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://xxx:7100/api/auth/token&#x27;</span></span><br><span class="line">headers = &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line">option = &#123;<span class="string">&quot;randomAgent&quot;</span>: <span class="literal">True</span>,</span><br><span class="line">          <span class="string">&quot;level&quot;</span>: <span class="number">3</span>,</span><br><span class="line">          <span class="string">&quot;tech&quot;</span>: <span class="string">&quot;BT&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">username = <span class="string">&quot;15108439740&quot;</span></span><br><span class="line">password = <span class="string">&quot;123&quot;</span></span><br><span class="line">data = &#123;<span class="string">&quot;digest&quot;</span>: <span class="string">&quot;64a62d49999fb141855f51ed3d58b5d0&quot;</span>,</span><br><span class="line">        <span class="string">&quot;userNo&quot;</span>: <span class="string">&quot;20032016&quot;</span>,</span><br><span class="line">        <span class="string">&quot;oid&quot;</span>: <span class="string">&quot;15CF2B0253E200A00270000000A2F105&quot;</span>&#125;</span><br><span class="line">parse_data = parse.urlencode(data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;转换后的data&quot;</span> + parse_data)</span><br><span class="line"></span><br><span class="line">payload = &#123;<span class="string">&quot;url&quot;</span>: url,</span><br><span class="line">           <span class="string">&quot;data&quot;</span>: parse_data&#125;</span><br><span class="line"></span><br><span class="line">res = requests.post(url=<span class="string">&quot;http://127.0.0.1:8775/option/%s/set&quot;</span> % taskid, data=json.dumps(option), headers=headers)</span><br><span class="line"><span class="built_in">print</span>(res.json())</span><br><span class="line"></span><br><span class="line">res1 = requests.post(url=<span class="string">&quot;http://127.0.0.1:8775/scan/%s/start&quot;</span> % taskid, data=json.dumps(payload), headers=headers)</span><br><span class="line"><span class="built_in">print</span>(res1.json())</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    res3 = requests.get(url=<span class="string">&quot;http://127.0.0.1:8775/scan/%s/status&quot;</span> % taskid)</span><br><span class="line">    <span class="built_in">print</span>(res3.json())</span><br><span class="line">    <span class="keyword">if</span> res3.json()[<span class="string">&quot;status&quot;</span>] != <span class="string">&#x27;terminated&#x27;</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        res2 = requests.get(url=<span class="string">&quot;http://127.0.0.1:8775/scan/%s/data&quot;</span> % taskid)</span><br><span class="line">        <span class="built_in">print</span>(res2.json())</span><br><span class="line">        log = requests.get(url=<span class="string">&quot;http://127.0.0.1:8775/scan/%s/log&quot;</span> % taskid)</span><br><span class="line">        <span class="built_in">print</span>(log.json())</span><br><span class="line">        res4 = requests.get(url=<span class="string">&quot;http://127.0.0.1:8775/task/%s/delete&quot;</span> % taskid)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方案二：Burp Suite + SqlMap</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> parse</span><br><span class="line"></span><br><span class="line">response = requests.get(<span class="string">&quot;http://127.0.0.1:8775/task/new&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(response.json())</span><br><span class="line">taskid = response.json()[<span class="string">&quot;taskid&quot;</span>]</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://xxx:7100/api/auth/token&#x27;</span></span><br><span class="line">headers = &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line">option = &#123;<span class="string">&quot;randomAgent&quot;</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="string">&quot;level&quot;</span>: <span class="number">3</span>,</span><br><span class="line">        <span class="string">&quot;tech&quot;</span>: <span class="string">&quot;BT&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line">username = <span class="string">&quot;15108439740&quot;</span></span><br><span class="line">password = <span class="string">&quot;123&quot;</span></span><br><span class="line">data = &#123;<span class="string">&quot;digest&quot;</span>: <span class="string">&quot;64a62d49999fb141855f51ed3d58b5d0&quot;</span>,</span><br><span class="line">        <span class="string">&quot;userNo&quot;</span>: <span class="string">&quot;20032016&quot;</span>,</span><br><span class="line">        <span class="string">&quot;oid&quot;</span>: <span class="string">&quot;15CF2B0253E200A00270000000A2F105&quot;</span>&#125;</span><br><span class="line">parse_data = parse.urlencode(data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;转换后的data&quot;</span> + parse_data)</span><br><span class="line"></span><br><span class="line">payload = &#123;<span class="string">&quot;url&quot;</span>: url,</span><br><span class="line">            <span class="string">&quot;data&quot;</span>: parse_data&#125;</span><br><span class="line"></span><br><span class="line">res = requests.post(url=<span class="string">&quot;http://127.0.0.1:8775/option/%s/set&quot;</span> % taskid, data=json.dumps(option), headers=headers)</span><br><span class="line"><span class="built_in">print</span>(res.json())</span><br><span class="line"></span><br><span class="line">res1 = requests.post(url=<span class="string">&quot;http://127.0.0.1:8775/scan/%s/start&quot;</span> % taskid, data=json.dumps(payload), headers=headers)</span><br><span class="line"><span class="built_in">print</span>(res1.json())</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    res3 = requests.get(url=<span class="string">&quot;http://127.0.0.1:8775/scan/%s/status&quot;</span> % taskid)</span><br><span class="line">    <span class="built_in">print</span>(res3.json())</span><br><span class="line">    <span class="keyword">if</span> res3.json()[<span class="string">&quot;status&quot;</span>] != <span class="string">&#x27;terminated&#x27;</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        res2 = requests.get(url=<span class="string">&quot;http://127.0.0.1:8775/scan/%s/data&quot;</span> % taskid)</span><br><span class="line">        <span class="built_in">print</span>(res2.json())</span><br><span class="line">        log = requests.get(url=<span class="string">&quot;http://127.0.0.1:8775/scan/%s/log&quot;</span> % taskid)</span><br><span class="line">        <span class="built_in">print</span>(log.json())</span><br><span class="line">        res4 = requests.get(url=<span class="string">&quot;http://127.0.0.1:8775/task/%s/delete&quot;</span> % taskid)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>方案二：Burp Suite + SqlMap</li>
+</ul>
 <p>1️⃣ 涉及大批量业务操作，可以用Burp Suite设置好代理，浏览器上点点点，然后进入Proxy的HTTP history，筛选请求，保存到文件，然后提取数据包，执行sqlmap注入测试</p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/17bdw/p/9950113.html">【Pyhon】利用BurpSuite到SQLMap批量测试SQL注入</a></p>
 <p>2️⃣ 少量目标请求（可通过前端发送），可在Options中设置记录Proxy或Repeater的log，最后直接执行：</p>
-<p><img src="https://img-blog.csdnimg.cn/5e33814023df4767b49aa13f032cc735.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTg3MDE3,size_16,color_FFFFFF,t_70" alt="burpsuite日志"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -l log.txt --batch -smart</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-</ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">mzy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/">http://example.com/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">猪儿虫17</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/03/14/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" title="测试文章"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">测试文章</div></div><div class="info-2"><div class="info-item-1">124355 </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">mzy</div><div class="author-info-description">Preparation is the key🔑</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/" title="BurpSuite和Sqlmap入门">BurpSuite和Sqlmap入门</a><time datetime="2026-03-14T09:05:01.000Z" title="发表于 2026-03-14 17:05:01">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" title="测试文章">测试文章</a><time datetime="2026-03-14T08:21:01.000Z" title="发表于 2026-03-14 16:21:01">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/hello-world/" title="Hello World">Hello World</a><time datetime="2026-03-14T07:44:29.272Z" title="发表于 2026-03-14 15:44:29">2026-03-14</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By mzy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+<p><img src="/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/options.png" alt="burpsuite日志"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -l log.txt --batch -smart</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">mzy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/">http://example.com/2026/03/14/BurpSuite%E5%92%8CSqlmap%E5%85%A5%E9%97%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">笨蛋17</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/14/Charles%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" title="Charles使用心得"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Charles使用心得</div></div><div class="info-2"><div class="info-item-1">自从Fiddler一直报证书有误，多次清除无果后，我就转投了Charles阵营，这里记录一些适应期得出的经验   Http抓包设置与Fiddler不同，Charles抓http协议的包是需要手动设置浏览器代理的 打开Charles Proxy菜单下的Proxy settings  Charles默认监听的8888端口，因此浏览器的代理端口也需要一致。 这里我使用SwitchyOmega插件切换浏览器代理  每次需要抓包，只需要将该插件的代理情景切换为Charles对应的代理情景就可以了。   Https抓包设置如果要抓包Https协议，就需要下载认证证书 点击Help菜单下的SSL Proxy下的Install Charles Root Certificate，选择自定义安装位置，安装位置选择“受信任的根证书颁发机构”。之后再点击SSL Proxy下的Save Charles Root Certificate。 此时如果还不能抓包，就点击Proxy菜单下的SSL Proxying Settings。  勾选Enable SSL Proxying，填写想要抓取页面的域名或是IP地址...</div></div></div></a><a class="pagination-related" href="/2026/03/14/hello-world/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Hello World</div></div><div class="info-2"><div class="info-item-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote sites1$ hexo deploy  More info: Deployment </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">mzy</div><div class="author-info-description">Preparation is the key🔑</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/%E5%89%8D%E7%AB%AF%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90/" title="前端内存泄漏分析">前端内存泄漏分析</a><time datetime="2026-03-14T11:06:34.000Z" title="发表于 2026-03-14 19:06:34">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" title="测试用例设计方法">测试用例设计方法</a><time datetime="2026-03-14T11:06:07.000Z" title="发表于 2026-03-14 19:06:07">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/vscode%E8%AE%BE%E7%BD%AEgitbash%E4%B8%BA%E9%BB%98%E8%AE%A4%E7%BB%88%E7%AB%AF/" title="vscode设置gitbash为默认终端">vscode设置gitbash为默认终端</a><time datetime="2026-03-14T11:04:38.000Z" title="发表于 2026-03-14 19:04:38">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/Failed-at-the-XXX-dev-script-npm-ERR/" title="Failed_at_the_XXX_dev_script_npm_ERR">Failed_at_the_XXX_dev_script_npm_ERR</a><time datetime="2026-03-14T11:03:18.000Z" title="发表于 2026-03-14 19:03:18">2026-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/14/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84/" title="性能测试之初窥门径">性能测试之初窥门径</a><time datetime="2026-03-14T10:58:07.000Z" title="发表于 2026-03-14 18:58:07">2026-03-14</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By mzy</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
